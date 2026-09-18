@@ -127,6 +127,22 @@ todo_t* todo_list_get(int key, struct todo_list_t* list){
 }
 
 todo_t* todo_list_remove(int key, struct todo_list_t* list){
+    size_t i = _hash(key, list);
+    struct todo_list_item_t* curr_bucket = list->tasks[i];
+    struct todo_list_item_t* prev = NULL;
+    while(curr_bucket){
+        if(curr_bucket->key == key){
+           if(!prev){
+               list->tasks[i] = curr_bucket->next;
+           }else{
+                prev->next = curr_bucket->next;
+                curr_bucket->next = NULL;  
+            }
+            return curr_bucket->task;  
+        }
+        prev = curr_bucket;
+        curr_bucket = curr_bucket->next;
+    }
     return NULL;
 }
 

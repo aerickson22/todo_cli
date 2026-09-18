@@ -26,6 +26,8 @@ int main(int argc, char** argv){
         return -1;
     }
     printf("%s\n", todo_get_create_date(target));
+    target = todo_list_remove(45, list);
+    printf("%s\n", todo_get_create_date(target));
     todo_list_free(list);
     return 0;
 }
