@@ -33,9 +33,13 @@ struct todo_t* todo_init(int id, char* text, time_t* timestamp, char* due_date){
         free(out);
         return NULL;
     }
-    out->modified_date = out->create_date;
+    if(!(out->modified_date = _date_str(timestamp))){
+        free(out->create_date);
+        free(out);
+        return NULL;
+    }
     out->due_date = due_date;
-    return out;
+    return out; 
 }
 
 int todo_get_id(struct todo_t* task){

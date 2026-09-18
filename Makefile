@@ -23,6 +23,9 @@ $(OBJ_DIR):
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
 
+debug:
+	gdb ./$(TARGET)
+
 clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR)
 
